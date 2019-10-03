@@ -15,6 +15,14 @@ RUN apt-get update && apt-get install -y \
 # install skinnywms using conda, this will also install Magics
 RUN conda install -c conda-forge skinnywms -y
 
+# activate conda environment
+RUN bash -c conda init bash
+RUN bash -c conda activate
+
+# FIX for missing background layers
+# manually set environment variable for magics
+ENV MAGPLUS_HOME="/opt/conda"
+
 # use local demo.py with fix for application listening on 
 # every ip host address (0.0.0.0) instead of only on loopback 
 # interface '127.0.0.1' by default
@@ -24,4 +32,6 @@ COPY ./demo.py /
 EXPOSE 5000/tcp
 
 # start demo
-CMD python ./demo.py --host='0.0.0.0' --port=5000 --path ./
+# add option --path <directory with grib files>
+# to look for grib files in specific directory
+CMD python /demo.py --host='0.0.0.0' --port=5000
