@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx
 
 # install skinnywms using conda, this will also install Magics
-RUN conda install -c conda-forge skinnywms -y
+RUN conda install -c conda-forge skinnywms=0.1.17 -y
 
 # activate conda environment
 RUN bash -c conda init bash
