@@ -1,6 +1,6 @@
 # pip requirements file
 # pip freeze > requirements.txt
-asn1crypto==0.24.0
+asn1crypto==1.0.1
 certifi==2019.9.11
 cffi==1.12.3
 chardet==3.0.4
@@ -11,7 +11,7 @@ cryptography==2.7
 Flask==1.1.1
 idna==2.8
 itsdangerous==1.1.0
-Jinja2==2.10.1
+Jinja2==2.10.3
 Magics==1.0.6
 MarkupSafe==1.1.1
 numpy==1.17.2
@@ -21,13 +21,13 @@ pycparser==2.19
 pyOpenSSL==19.0.0
 PySocks==1.7.1
 python-dateutil==2.8.0
-pytz==2019.2
+pytz==2019.3
 requests==2.22.0
 ruamel-yaml==0.15.46
 simplejson==3.16.0
 six==1.12.0
-skinnywms==0.1.2
+skinnywms==0.2.1
 tqdm==4.36.1
 urllib3==1.24.2
 Werkzeug==0.16.0
-xarray==0.13.0
+xarray==0.14.0

@@ -1,4 +1,4 @@
-NAME   := duardrosert/skinnywms
+NAME   := eduardrosert/skinnywms
 TAG    := $$(git log -1 --pretty=%H)
 IMG    := ${NAME}:${TAG}
 LATEST := ${NAME}:latest
