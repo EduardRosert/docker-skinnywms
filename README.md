@@ -1,4 +1,7 @@
 # docker-skinnywms
+[![Docker Automated build](https://img.shields.io/docker/cloud/automated/eduardrosert/skinnywms.svg)](https://hub.docker.com/r/eduardrosert/skinnywms)
+[![Docker Build Status](https://img.shields.io/docker/cloud/build/eduardrosert/skinnywms.svg)](https://hub.docker.com/r/eduardrosert/skinnywms)
+
 [skinnywms](https://github.com/ecmwf/skinnywms) packaged to run in a docker container with a simple demo application.
 
 # Installation instructions
