@@ -10,7 +10,7 @@ RUN conda config --add channels conda-forge
 # install dependency for Magics that is not installed (cannot be installed?) by conda
 # see conda installation error: OSError: libGL.so.1: cannot open shared object file: No such file or directory
 RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx
+    libgl1-mesa-glx=18.3.6-2
 
 # install skinnywms using conda, this will also install Magics
 RUN conda install -c conda-forge skinnywms=0.2.1 -y
