@@ -4,6 +4,22 @@
 
 [skinnywms](https://github.com/ecmwf/skinnywms) packaged to run in a docker container with a simple demo application.
 
+# Run with Docker
+The image is available on Dockerhub as ``eduardrosert/skinnywms``. If you have Docker already installed on your machine, just do the following to run the image.
+
+## Run the image on your machine
+Run the demo applicaton and publish port ``5000``. The ``--rm`` switch makes sure that docker leaves no temporary files behind, when you stop the image:
+```bash
+docker run --rm -p 5000:5000 eduardrosert/skinnywms
+```
+Now you can type http://localhost:5000 on the machine running docker to access the demo application.
+
+## Run interactive shell
+Run interactive shell ``/bin/bash`` in docker image ``eduardrosert/skinnywms`` or any other command for that matter overriding the default CMD instruction from the docker image:
+```bash
+docker run --rm -i -t -p 5000:5000 eduardrosert/skinnywms /bin/bash
+```
+
 # Installation instructions
 Follow these steps to manually create the docker image and make it available locally.
 
