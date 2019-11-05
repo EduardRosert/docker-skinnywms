@@ -1,32 +1,44 @@
-FROM continuumio/miniconda3:4.7.12
+# Build image
+# Use slim python 3 + Magics image as base
+FROM eduardrosert/magics:version-4.2.0 as build
 
-#update conda
-RUN conda update conda -y
+# Install tools
+RUN set -ex \
+    && apt-get update \
+    && apt-get install --yes --no-install-suggests --no-install-recommends \
+        git
 
-# add conda-forge channel
-RUN conda config --add channels conda-forge
+# Get Skinnywms
+ARG SKINNYWMS_VERSION=0.2.1
+RUN set -eux \
+    && mkdir -p /app/ \
+    && cd /app \
+    && git clone https://github.com/ecmwf/skinnywms.git \
+    && cd skinnywms \
+    && git checkout ${SKINNYWMS_VERSION}
 
-# Fix for Magics installation which is a dependency of skinnywms
-# install dependency for Magics that is not installed (cannot be installed?) by conda
-# see conda installation error: OSError: libGL.so.1: cannot open shared object file: No such file or directory
-RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx=18.3.6-2
+# slim the image:
+# - delete git repo information
+RUN set -eux \
+    && rm -r /app/skinnywms/.git
 
-# install skinnywms using conda, this will also install Magics
-RUN conda install -c conda-forge skinnywms=0.2.1 -y
+# slim the image:
+# - delete example data
+#RUN set -eux \
+#    && rm -r /app/skinnywms/skinnywms/testdata
 
-# activate conda environment
-RUN bash -c conda init bash
-RUN bash -c conda activate
+# Run-time image
+FROM eduardrosert/magics
 
-# FIX for missing background layers
-# manually set environment variable for magics
-ENV MAGPLUS_HOME="/opt/conda"
+RUN set -eux \
+    && mkdir -p /app/
 
-# use local demo.py with fix for application listening on 
-# every ip host address (0.0.0.0) instead of only on loopback 
-# interface '127.0.0.1' by default
-COPY ./demo.py /
+COPY --from=build /app/skinnywms /app/skinnywms
+
+# Install Python run-time dependencies.
+COPY requirements.txt /root/
+RUN set -ex \
+    && pip install -r /root/requirements.txt
 
 # demo application will listen at http://0.0.0.0:5000
 EXPOSE 5000/tcp
@@ -34,4 +46,24 @@ EXPOSE 5000/tcp
 # start demo
 # add option --path <directory with grib files>
 # to look for grib files in specific directory
-CMD python /demo.py --host='0.0.0.0' --port=5000
+CMD python /app/skinnywms/demo.py --host='0.0.0.0' --port=5000
+
+# METADATA
+# Build-time metadata as defined at http://label-schema.org
+# --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
+ARG BUILD_DATE
+# --build-arg VCS_REF=`git rev-parse --short HEAD`, e.g. 'c30d602'
+ARG VCS_REF
+# --build-arg VCS_URL=`git config --get remote.origin.url`, e.g. 'https://github.com/eduardrosert/docker-skinnywms'
+ARG VCS_URL
+# --build-arg VERSION=`git tag`, e.g. '0.2.1'
+ARG VERSION
+LABEL org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.name="Skinny WMS" \
+        org.label-schema.description="The Skinny WMS is a small WMS server that will help you to visualise your NetCDF and Grib Data." \
+        org.label-schema.url="https://confluence.ecmwf.int/display/MAGP/Skinny+WMS" \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url=$VCS_URL \
+        org.label-schema.vendor="ECMWF - European Centre for Medium-Range Weather Forecasts" \
+        org.label-schema.version=$VERSION \
+        org.label-schema.schema-version="1.0"

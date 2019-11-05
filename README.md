@@ -4,13 +4,13 @@
 
 [skinnywms](https://github.com/ecmwf/skinnywms) packaged to run in a docker container with a simple demo application.
 
-# Run with Docker
-The image is available on Dockerhub as ``eduardrosert/skinnywms``. If you have Docker already installed on your machine, just do the following to run the image.
+# Run pre-built image with Docker
+The pre-built image ``eduardrosert/skinnywms`` is available on [Dockerhub](https://hub.docker.com/r/eduardrosert/skinnywms). If you already have Docker running on your machine, just do the following to run the image.
 
 ## Run the image on your machine
 Run the demo applicaton and publish port ``5000``. The ``--rm`` switch makes sure that docker leaves no temporary files behind, when you stop the image:
 ```bash
-docker run --rm -p 5000:5000 eduardrosert/skinnywms
+docker run --rm -i -t -p 5000:5000 eduardrosert/skinnywms
 ```
 Now you can type http://localhost:5000 on the machine running docker to access the demo application.
 
@@ -33,7 +33,7 @@ docker images
 ```
 ```
 REPOSITORY                                TAG                 IMAGE ID            CREATED             SIZE
-eduardrosert/skinnywms         latest              43d40f97ce60        1 minute ago        2.95GB
+eduardrosert/skinnywms                    latest              eb4953292e7f        1 minute ago        727MB
 ...
 ```
 
