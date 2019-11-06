@@ -17,7 +17,7 @@
 #     IMAGE_NAME: the name and tag of the Docker repository being built. (This variable is a combination of DOCKER_REPO:DOCKER_TAG.)
 
 SKINNYWMS_VERSION="0.2.1"
-GIT_URL=$(git config --get remote.origin.url)
+GIT_URL="https://github.com/EduardRosert/docker-skinnywms"#$(git config --get remote.origin.url)
 DATE=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 
 docker build \
