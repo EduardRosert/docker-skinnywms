@@ -15,9 +15,9 @@ ifneq (x${GIT_NOT_CLEAN_CHECK}, x)
 DOCKER_TAG_SUFFIX = "-dirty"
 endif
 
-GIT_URL := $$(git remote get-url --push origin)
+GIT_URL := $(shell git config --get remote.origin.url)
 LATEST  := ${DOCKER_REPO}:latest
-DATE    := $$(date -u +%Y-%m-%dT%H:%M:%SZ)
+DATE    := $(shell date -u +%Y-%m-%dT%H:%M:%SZ)
 
 # If this is not a tagged version
 # replace docker tag with 'latest'
