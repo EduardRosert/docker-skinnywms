@@ -1,6 +1,13 @@
 # docker-skinnywms
+## Git
+[![Git Tag](https://img.shields.io/github/v/tag/eduardrosert/docker-skinnywms)](https://github.com/eduardrosert/docker-skinnywms/releases)
+[![License](https://img.shields.io/github/license/eduardrosert/docker-skinnywms)](https://github.com/eduardrosert/docker-skinnywms)
+## Docker
 [![Docker Automated build](https://img.shields.io/docker/cloud/automated/eduardrosert/skinnywms.svg)](https://hub.docker.com/r/eduardrosert/skinnywms)
 [![Docker Build Status](https://img.shields.io/docker/cloud/build/eduardrosert/skinnywms.svg)](https://hub.docker.com/r/eduardrosert/skinnywms)
+[![Docker Pulls](https://img.shields.io/docker/pulls/eduardrosert/skinnywms)](https://hub.docker.com/r/eduardrosert/skinnywms)
+[![Docker Image Version](https://images.microbadger.com/badges/version/eduardrosert/skinnywms.svg)](https://microbadger.com/images/eduardrosert/magics "Get your own version badge on microbadger.com")
+[![Docker Commit Reference](https://images.microbadger.com/badges/commit/eduardrosert/skinnywms.svg)](https://microbadger.com/images/microscaling/microscaling "Get your own commit badge on microbadger.com")
 
 [skinnywms](https://github.com/ecmwf/skinnywms) packaged to run in a docker container with a simple demo application.
 
