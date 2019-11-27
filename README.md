@@ -1,4 +1,12 @@
-# docker-skinnywms
+# Docker SkinnyWMS
+
+__Attention__: My [pull request](https://github.com/ecmwf/skinnywms/pull/42) was merged to the ECMWF SkinnyWMS repository at https://github.com/ecmwf/skinnywms, so now an official docker image ``ecmwf/skinnywms`` is available on [dockerhub](https://hub.docker.com/r/ecmwf/skinnywms)! 
+
+__Please use the official image!__
+```bash
+docker run --rm -i -t -p 5000:5000 ecmwf/skinnywms
+```
+
 ## Git
 [![Git Tag](https://img.shields.io/github/v/tag/eduardrosert/docker-skinnywms)](https://github.com/eduardrosert/docker-skinnywms/releases)
 [![License](https://img.shields.io/github/license/eduardrosert/docker-skinnywms)](https://github.com/eduardrosert/docker-skinnywms)
