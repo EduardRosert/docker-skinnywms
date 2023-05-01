@@ -1,4 +1,4 @@
 # pip requirements file
 # pip freeze > requirements.txt
-Flask==1.1.1
+Flask==2.3.2
 xarray==0.14.0
